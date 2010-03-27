@@ -34,7 +34,7 @@ karia2::karia2()
 
     QTimer *timer2 = new QTimer(this);                         //Qui viene inizializzato il timer che 
 	connect( timer2, SIGNAL(timeout()), this, SLOT( display() ) );  //esegue lo slot display() dello stato scaricamento file
-	timer2->start(1000);// il tempo di aggiornamento è settato ad 1 secondo.
+	// timer2->start(1000);// il tempo di aggiornamento è settato ad 1 secondo.
 
 
     QSystemTrayIcon *trayIcon;				//Tray Icon
@@ -48,6 +48,12 @@ karia2::karia2()
 	connect(spinBox,SIGNAL( valueChanged(int)), this, SLOT ( update() ) );
 	connect(dockWidget, SIGNAL(dockLocationChanged(Qt::DockWidgetArea)),this, SLOT(setSettingsDirty()));
     splash->finish(this);
+
+    // read out put of child process
+    QObject::connect(&this->aria2, SIGNAL(readyReadStandardOutput()),
+                     this, SLOT(logReadStdout()));
+    QObject::connect(&this->aria2, SIGNAL(readyReadStandardError()),
+                     this, SLOT(logReadStderr()));
 }
 
 karia2::~karia2()
@@ -118,15 +124,19 @@ void karia2::openurl() //aprire un url con l'indirizzo al file da scaricare
 	str2.prepend("-s ");
 	str2.append(" ");
 
-    // str2.prepend(" ");
-    // str2.prepend("--max-overall-download-limit=3K");
+    str2.prepend(" ");
+    str2.prepend("--max-overall-download-limit=3K");
 
 	bool ok;//qinputdialog
+    QStringList argList;
 	QString text = QInputDialog::getText(this, tr("karia2 Open Url..."),
                                          tr("URL:"), QLineEdit::Normal,
                                          "http://", &ok);
 	if (ok && !text.isEmpty()) {
-        aria2.startDetached("aria2c",QStringList() << (str2)<< (text) , str1 );//avvio aria2c nella cartella dettata da str1 con url=text 
+        // aria2.startDetached("aria2c",QStringList() << (str2)<< (text) , str1 );//avvio aria2c nella cartella dettata da str1 con url=text 
+        argList<<str2<<text;
+        this->aria2.setWorkingDirectory(str1);
+        this->aria2.start("aria2c", argList, QIODevice::ReadOnly);
         //TODO:aggiungere stringa relativa alle info nel display text browser.
         listWidget->insertItem( 1, tr("Downloading: " ) + text + tr("seg ") + str2 );
 	}
@@ -186,7 +196,12 @@ void karia2::remove()
 void karia2::stop()
 {
     //system("killall aria2c&");
-    QMessageBox::about(this, "About karia2","ciao");
+    // QMessageBox::about(this, "About karia2","ciao");
+    if (this->aria2.state() == QProcess::Starting || this->aria2.state() == QProcess::Running) {
+        this->aria2.kill();
+    } else {
+        // aria2c not started
+    }
 }
 
 void karia2::resume()
@@ -231,3 +246,30 @@ void karia2::about()
                        "For technical support, mailto:fdmarco3@gmail.com\n"
                        "or visit: http://sourceforge.net/projects/karia2\n");
 }
+
+void karia2::logReadStdout()
+{
+    QString logLine;
+    while(this->aria2.bytesAvailable() > 0) {
+        if (this->aria2.canReadLine()) {
+            logLine = this->aria2.readLine();
+        } else {
+            logLine = this->aria2.readAll();
+        }
+        this->textBrowser->append(logLine);
+    }
+}
+void karia2::logReadStderr()
+{
+}
+
+void karia2::closeEvent(QCloseEvent *event)
+{
+    if (this->aria2.state() == QProcess::Starting || this->aria2.state() == QProcess::Running) {
+        this->aria2.kill();
+    }
+    QMainWindow::closeEvent(event);
+}
+
+
+
