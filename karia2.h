@@ -26,6 +26,12 @@ private slots:
 	void setSettingsDirty();
 	void settings();
 
+    void logReadStdout();
+    void logReadStderr();
+
+protected:
+    virtual void closeEvent(QCloseEvent *event);
+
 private:
     QProcess aria2;
     /*private slots:

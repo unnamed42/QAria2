@@ -10,8 +10,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>602</width>
-    <height>405</height>
+    <width>806</width>
+    <height>501</height>
    </rect>
   </property>
   <property name="palette">
@@ -97,9 +97,6 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout">
-    <item row="0" column="0">
-     <widget class="QListWidget" name="listWidget"/>
-    </item>
     <item row="1" column="0">
      <widget class="QTextBrowser" name="textBrowser">
       <property name="palette">
@@ -165,6 +162,12 @@
          </colorrole>
         </disabled>
        </palette>
+      </property>
+      <property name="readOnly">
+       <bool>false</bool>
+      </property>
+      <property name="cursorWidth">
+       <number>0</number>
       </property>
      </widget>
     </item>
@@ -248,6 +251,9 @@
       </property>
      </widget>
     </item>
+    <item row="0" column="0">
+     <widget class="QListWidget" name="listWidget"/>
+    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -255,7 +261,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>602</width>
+     <width>806</width>
      <height>21</height>
     </rect>
    </property>
