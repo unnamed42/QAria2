@@ -1,11 +1,12 @@
-<ui version="4.0" >
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <author>Fabrizio Di Marco</author>
  <class>karia2</class>
- <widget class="QMainWindow" name="karia2" >
-  <property name="windowModality" >
+ <widget class="QMainWindow" name="karia2">
+  <property name="windowModality">
    <enum>Qt::NonModal</enum>
   </property>
-  <property name="geometry" >
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
@@ -13,21 +14,21 @@
     <height>405</height>
    </rect>
   </property>
-  <property name="palette" >
+  <property name="palette">
    <palette>
     <active>
-     <colorrole role="Base" >
-      <brush brushstyle="SolidPattern" >
-       <color alpha="255" >
+     <colorrole role="Base">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
         <red>255</red>
         <green>255</green>
         <blue>255</blue>
        </color>
       </brush>
      </colorrole>
-     <colorrole role="Window" >
-      <brush brushstyle="SolidPattern" >
-       <color alpha="255" >
+     <colorrole role="Window">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
         <red>255</red>
         <green>255</green>
         <blue>255</blue>
@@ -36,18 +37,18 @@
      </colorrole>
     </active>
     <inactive>
-     <colorrole role="Base" >
-      <brush brushstyle="SolidPattern" >
-       <color alpha="255" >
+     <colorrole role="Base">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
         <red>255</red>
         <green>255</green>
         <blue>255</blue>
        </color>
       </brush>
      </colorrole>
-     <colorrole role="Window" >
-      <brush brushstyle="SolidPattern" >
-       <color alpha="255" >
+     <colorrole role="Window">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
         <red>255</red>
         <green>255</green>
         <blue>255</blue>
@@ -56,18 +57,18 @@
      </colorrole>
     </inactive>
     <disabled>
-     <colorrole role="Base" >
-      <brush brushstyle="SolidPattern" >
-       <color alpha="255" >
+     <colorrole role="Base">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
         <red>255</red>
         <green>255</green>
         <blue>255</blue>
        </color>
       </brush>
      </colorrole>
-     <colorrole role="Window" >
-      <brush brushstyle="SolidPattern" >
-       <color alpha="255" >
+     <colorrole role="Window">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
         <red>255</red>
         <green>255</green>
         <blue>255</blue>
@@ -77,45 +78,45 @@
     </disabled>
    </palette>
   </property>
-  <property name="font" >
+  <property name="font">
    <font>
     <family>Lucida Grande</family>
    </font>
   </property>
-  <property name="windowTitle" >
+  <property name="windowTitle">
    <string>karia2</string>
   </property>
-  <property name="toolButtonStyle" >
+  <property name="toolButtonStyle">
    <enum>Qt::ToolButtonIconOnly</enum>
   </property>
-  <property name="dockNestingEnabled" >
+  <property name="dockNestingEnabled">
    <bool>false</bool>
   </property>
-  <property name="unifiedTitleAndToolBarOnMac" >
+  <property name="unifiedTitleAndToolBarOnMac">
    <bool>false</bool>
   </property>
-  <widget class="QWidget" name="centralwidget" >
-   <layout class="QGridLayout" >
-    <item row="0" column="0" >
-     <widget class="QListWidget" name="listWidget" />
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout">
+    <item row="0" column="0">
+     <widget class="QListWidget" name="listWidget"/>
     </item>
-    <item row="1" column="0" >
-     <widget class="QTextBrowser" name="textBrowser" >
-      <property name="palette" >
+    <item row="1" column="0">
+     <widget class="QTextBrowser" name="textBrowser">
+      <property name="palette">
        <palette>
         <active>
-         <colorrole role="Light" >
-          <brush brushstyle="SolidPattern" >
-           <color alpha="255" >
+         <colorrole role="Light">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
             <red>255</red>
             <green>255</green>
             <blue>255</blue>
            </color>
           </brush>
          </colorrole>
-         <colorrole role="Base" >
-          <brush brushstyle="SolidPattern" >
-           <color alpha="255" >
+         <colorrole role="Base">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
             <red>240</red>
             <green>240</green>
             <blue>240</blue>
@@ -124,18 +125,18 @@
          </colorrole>
         </active>
         <inactive>
-         <colorrole role="Light" >
-          <brush brushstyle="SolidPattern" >
-           <color alpha="255" >
+         <colorrole role="Light">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
             <red>255</red>
             <green>255</green>
             <blue>255</blue>
            </color>
           </brush>
          </colorrole>
-         <colorrole role="Base" >
-          <brush brushstyle="SolidPattern" >
-           <color alpha="255" >
+         <colorrole role="Base">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
             <red>240</red>
             <green>240</green>
             <blue>240</blue>
@@ -144,18 +145,18 @@
          </colorrole>
         </inactive>
         <disabled>
-         <colorrole role="Light" >
-          <brush brushstyle="SolidPattern" >
-           <color alpha="255" >
+         <colorrole role="Light">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
             <red>255</red>
             <green>255</green>
             <blue>255</blue>
            </color>
           </brush>
          </colorrole>
-         <colorrole role="Base" >
-          <brush brushstyle="SolidPattern" >
-           <color alpha="255" >
+         <colorrole role="Base">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
             <red>255</red>
             <green>255</green>
             <blue>255</blue>
@@ -167,23 +168,23 @@
       </property>
      </widget>
     </item>
-    <item row="2" column="0" >
-     <widget class="QLabel" name="label" >
-      <property name="palette" >
+    <item row="2" column="0">
+     <widget class="QLabel" name="label">
+      <property name="palette">
        <palette>
         <active>
-         <colorrole role="Base" >
-          <brush brushstyle="SolidPattern" >
-           <color alpha="255" >
+         <colorrole role="Base">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
             <red>255</red>
             <green>255</green>
             <blue>255</blue>
            </color>
           </brush>
          </colorrole>
-         <colorrole role="Window" >
-          <brush brushstyle="SolidPattern" >
-           <color alpha="255" >
+         <colorrole role="Window">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
             <red>255</red>
             <green>255</green>
             <blue>255</blue>
@@ -192,18 +193,18 @@
          </colorrole>
         </active>
         <inactive>
-         <colorrole role="Base" >
-          <brush brushstyle="SolidPattern" >
-           <color alpha="255" >
+         <colorrole role="Base">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
             <red>255</red>
             <green>255</green>
             <blue>255</blue>
            </color>
           </brush>
          </colorrole>
-         <colorrole role="Window" >
-          <brush brushstyle="SolidPattern" >
-           <color alpha="255" >
+         <colorrole role="Window">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
             <red>255</red>
             <green>255</green>
             <blue>255</blue>
@@ -212,18 +213,18 @@
          </colorrole>
         </inactive>
         <disabled>
-         <colorrole role="Base" >
-          <brush brushstyle="SolidPattern" >
-           <color alpha="255" >
+         <colorrole role="Base">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
             <red>255</red>
             <green>255</green>
             <blue>255</blue>
            </color>
           </brush>
          </colorrole>
-         <colorrole role="Window" >
-          <brush brushstyle="SolidPattern" >
-           <color alpha="255" >
+         <colorrole role="Window">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
             <red>255</red>
             <green>255</green>
             <blue>255</blue>
@@ -233,85 +234,85 @@
         </disabled>
        </palette>
       </property>
-      <property name="font" >
+      <property name="font">
        <font>
         <family>Lucida Grande</family>
         <pointsize>7</pointsize>
        </font>
       </property>
-      <property name="frameShadow" >
+      <property name="frameShadow">
        <enum>QFrame::Raised</enum>
       </property>
-      <property name="text" >
+      <property name="text">
        <string/>
       </property>
      </widget>
     </item>
    </layout>
   </widget>
-  <widget class="QMenuBar" name="menubar" >
-   <property name="geometry" >
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
      <width>602</width>
-     <height>24</height>
+     <height>21</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuFile" >
-    <property name="title" >
-     <string>file</string>
+   <widget class="QMenu" name="menuOptions">
+    <property name="title">
+     <string>&amp;Options</string>
     </property>
-    <addaction name="actionExit" />
-    <addaction name="actionOpen_URL" />
-    <addaction name="actionResume" />
+    <addaction name="actionDestination_folder"/>
    </widget>
-   <widget class="QMenu" name="menuOptions" >
-    <property name="title" >
-     <string>options</string>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>&amp;Help</string>
     </property>
-    <addaction name="actionDestination_folder" />
+    <addaction name="actionAbout"/>
    </widget>
-   <widget class="QMenu" name="menuHelp" >
-    <property name="title" >
-     <string>help</string>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>&amp;File</string>
     </property>
-    <addaction name="actionAbout" />
+    <addaction name="actionExit"/>
+    <addaction name="actionOpen_URL"/>
+    <addaction name="actionResume"/>
    </widget>
-   <addaction name="menuFile" />
-   <addaction name="menuOptions" />
-   <addaction name="menuHelp" />
+   <addaction name="menuFile"/>
+   <addaction name="menuOptions"/>
+   <addaction name="menuHelp"/>
   </widget>
-  <widget class="QDockWidget" name="dockWidget" >
-   <property name="autoFillBackground" >
+  <widget class="QDockWidget" name="dockWidget">
+   <property name="autoFillBackground">
     <bool>false</bool>
    </property>
-   <property name="styleSheet" >
+   <property name="styleSheet">
     <string>Qt::WindowStaysOnTopHint</string>
    </property>
-   <property name="features" >
-    <set>QDockWidget::DockWidgetFloatable|QDockWidget::DockWidgetMovable|QDockWidget::NoDockWidgetFeatures</set>
+   <property name="features">
+    <set>QDockWidget::DockWidgetFloatable|QDockWidget::DockWidgetMovable</set>
    </property>
-   <property name="allowedAreas" >
-    <set>Qt::LeftDockWidgetArea|Qt::NoDockWidgetArea|Qt::RightDockWidgetArea</set>
+   <property name="allowedAreas">
+    <set>Qt::LeftDockWidgetArea|Qt::RightDockWidgetArea</set>
    </property>
-   <property name="windowTitle" >
-    <string>options</string>
+   <property name="windowTitle">
+    <string>Options</string>
    </property>
-   <attribute name="dockWidgetArea" >
+   <attribute name="dockWidgetArea">
     <number>1</number>
    </attribute>
-   <widget class="QWidget" name="dockWidgetContents" >
-    <layout class="QGridLayout" >
-     <item row="0" column="0" >
+   <widget class="QWidget" name="dockWidgetContents">
+    <layout class="QGridLayout">
+     <item row="0" column="0">
       <spacer>
-       <property name="orientation" >
+       <property name="orientation">
         <enum>Qt::Vertical</enum>
        </property>
-       <property name="sizeType" >
+       <property name="sizeType">
         <enum>QSizePolicy::Fixed</enum>
        </property>
-       <property name="sizeHint" >
+       <property name="sizeHint" stdset="0">
         <size>
          <width>20</width>
          <height>20</height>
@@ -319,71 +320,71 @@
        </property>
       </spacer>
      </item>
-     <item row="1" column="0" >
-      <widget class="QGroupBox" name="groupBox" >
-       <property name="title" >
+     <item row="1" column="0">
+      <widget class="QGroupBox" name="groupBox">
+       <property name="title">
         <string/>
        </property>
-       <layout class="QGridLayout" >
-        <item row="0" column="0" >
-         <widget class="QPushButton" name="pushButton_5" >
-          <property name="cursor" >
+       <layout class="QGridLayout">
+        <item row="0" column="0">
+         <widget class="QPushButton" name="pushButton_5">
+          <property name="cursor">
            <cursorShape>PointingHandCursor</cursorShape>
           </property>
-          <property name="text" >
+          <property name="text">
            <string>New</string>
           </property>
          </widget>
         </item>
-        <item row="1" column="0" >
-         <widget class="QPushButton" name="pushButton_6" >
-          <property name="cursor" >
+        <item row="1" column="0">
+         <widget class="QPushButton" name="pushButton_6">
+          <property name="cursor">
            <cursorShape>PointingHandCursor</cursorShape>
           </property>
-          <property name="text" >
+          <property name="text">
            <string>Resume</string>
           </property>
          </widget>
         </item>
-        <item row="2" column="0" >
-         <widget class="QPushButton" name="pushButton" >
-          <property name="cursor" >
+        <item row="2" column="0">
+         <widget class="QPushButton" name="pushButton">
+          <property name="cursor">
            <cursorShape>PointingHandCursor</cursorShape>
           </property>
-          <property name="text" >
+          <property name="text">
            <string>Remove Completed</string>
           </property>
          </widget>
         </item>
-        <item row="3" column="0" >
-         <widget class="QPushButton" name="pushButton_4" >
-          <property name="cursor" >
+        <item row="3" column="0">
+         <widget class="QPushButton" name="pushButton_4">
+          <property name="cursor">
            <cursorShape>PointingHandCursor</cursorShape>
           </property>
-          <property name="text" >
+          <property name="text">
            <string>Stop </string>
           </property>
          </widget>
         </item>
-        <item row="4" column="0" >
-         <widget class="QPushButton" name="pushButton_2" >
-          <property name="cursor" >
+        <item row="4" column="0">
+         <widget class="QPushButton" name="pushButton_2">
+          <property name="cursor">
            <cursorShape>PointingHandCursor</cursorShape>
           </property>
-          <property name="text" >
+          <property name="text">
            <string>Destination Folder</string>
           </property>
          </widget>
         </item>
-        <item row="8" column="0" >
+        <item row="8" column="0">
          <spacer>
-          <property name="orientation" >
+          <property name="orientation">
            <enum>Qt::Vertical</enum>
           </property>
-          <property name="sizeType" >
+          <property name="sizeType">
            <enum>QSizePolicy::Fixed</enum>
           </property>
-          <property name="sizeHint" >
+          <property name="sizeHint" stdset="0">
            <size>
             <width>20</width>
             <height>40</height>
@@ -391,37 +392,37 @@
           </property>
          </spacer>
         </item>
-        <item row="6" column="0" >
-         <widget class="QSpinBox" name="spinBox" >
-          <property name="prefix" >
+        <item row="6" column="0">
+         <widget class="QSpinBox" name="spinBox">
+          <property name="prefix">
            <string>segments: </string>
           </property>
-          <property name="minimum" >
+          <property name="minimum">
            <number>1</number>
           </property>
-          <property name="maximum" >
-           <number>5</number>
+          <property name="maximum">
+           <number>10</number>
           </property>
-          <property name="singleStep" >
+          <property name="singleStep">
            <number>1</number>
           </property>
          </widget>
         </item>
-        <item row="7" column="0" >
-         <widget class="QSlider" name="horizontalSlider" >
-          <property name="focusPolicy" >
+        <item row="7" column="0">
+         <widget class="QSlider" name="horizontalSlider">
+          <property name="focusPolicy">
            <enum>Qt::NoFocus</enum>
           </property>
-          <property name="minimum" >
+          <property name="minimum">
            <number>1</number>
           </property>
-          <property name="maximum" >
+          <property name="maximum">
+           <number>10</number>
+          </property>
+          <property name="pageStep">
            <number>5</number>
           </property>
-          <property name="pageStep" >
-           <number>5</number>
-          </property>
-          <property name="orientation" >
+          <property name="orientation">
            <enum>Qt::Horizontal</enum>
           </property>
          </widget>
@@ -429,15 +430,15 @@
        </layout>
       </widget>
      </item>
-     <item row="2" column="0" >
+     <item row="2" column="0">
       <spacer>
-       <property name="orientation" >
+       <property name="orientation">
         <enum>Qt::Vertical</enum>
        </property>
-       <property name="sizeType" >
+       <property name="sizeType">
         <enum>QSizePolicy::Fixed</enum>
        </property>
-       <property name="sizeHint" >
+       <property name="sizeHint" stdset="0">
         <size>
          <width>145</width>
          <height>21</height>
@@ -448,64 +449,64 @@
     </layout>
    </widget>
   </widget>
-  <action name="actionOpen_URL" >
-   <property name="text" >
+  <action name="actionOpen_URL">
+   <property name="text">
     <string>URL</string>
    </property>
   </action>
-  <action name="action1_segment" >
-   <property name="text" >
+  <action name="action1_segment">
+   <property name="text">
     <string>1 segment</string>
    </property>
   </action>
-  <action name="action2_segments" >
-   <property name="text" >
+  <action name="action2_segments">
+   <property name="text">
     <string>2 segments</string>
    </property>
   </action>
-  <action name="action3_segments" >
-   <property name="text" >
+  <action name="action3_segments">
+   <property name="text">
     <string>3 segments</string>
    </property>
   </action>
-  <action name="action4_segments" >
-   <property name="text" >
+  <action name="action4_segments">
+   <property name="text">
     <string>4 segments</string>
    </property>
   </action>
-  <action name="action5_segments" >
-   <property name="text" >
+  <action name="action5_segments">
+   <property name="text">
     <string>5 segments</string>
    </property>
   </action>
-  <action name="actionN_segments" >
-   <property name="text" >
+  <action name="actionN_segments">
+   <property name="text">
     <string>n segments</string>
    </property>
   </action>
-  <action name="actionDestination_folder" >
-   <property name="text" >
-    <string>destination folder</string>
+  <action name="actionDestination_folder">
+   <property name="text">
+    <string>&amp;Destination folder</string>
    </property>
   </action>
-  <action name="actionExit" >
-   <property name="text" >
-    <string>Exit</string>
+  <action name="actionExit">
+   <property name="text">
+    <string>&amp;Exit</string>
    </property>
   </action>
-  <action name="actionResume" >
-   <property name="text" >
+  <action name="actionResume">
+   <property name="text">
     <string>Resume</string>
    </property>
   </action>
-  <action name="actionAbout" >
-   <property name="text" >
-    <string>about</string>
+  <action name="actionAbout">
+   <property name="text">
+    <string>&amp;About</string>
    </property>
   </action>
  </widget>
  <resources>
-  <include location="karia2.qrc" />
+  <include location="karia2.qrc"/>
  </resources>
  <connections>
   <connection>
@@ -514,11 +515,11 @@
    <receiver>karia2</receiver>
    <slot>close()</slot>
    <hints>
-    <hint type="sourcelabel" >
+    <hint type="sourcelabel">
      <x>-1</x>
      <y>-1</y>
     </hint>
-    <hint type="destinationlabel" >
+    <hint type="destinationlabel">
      <x>281</x>
      <y>177</y>
     </hint>
@@ -530,11 +531,11 @@
    <receiver>horizontalSlider</receiver>
    <slot>setValue(int)</slot>
    <hints>
-    <hint type="sourcelabel" >
+    <hint type="sourcelabel">
      <x>84</x>
      <y>289</y>
     </hint>
-    <hint type="destinationlabel" >
+    <hint type="destinationlabel">
      <x>84</x>
      <y>315</y>
     </hint>
@@ -546,11 +547,11 @@
    <receiver>spinBox</receiver>
    <slot>setValue(int)</slot>
    <hints>
-    <hint type="sourcelabel" >
+    <hint type="sourcelabel">
      <x>84</x>
      <y>315</y>
     </hint>
-    <hint type="destinationlabel" >
+    <hint type="destinationlabel">
      <x>84</x>
      <y>289</y>
     </hint>
@@ -558,19 +559,19 @@
   </connection>
  </connections>
  <designerdata>
-  <property name="gridDeltaX" >
+  <property name="gridDeltaX">
    <number>10</number>
   </property>
-  <property name="gridDeltaY" >
+  <property name="gridDeltaY">
    <number>10</number>
   </property>
-  <property name="gridSnapX" >
+  <property name="gridSnapX">
    <bool>true</bool>
   </property>
-  <property name="gridSnapY" >
+  <property name="gridSnapY">
    <bool>true</bool>
   </property>
-  <property name="gridVisible" >
+  <property name="gridVisible">
    <bool>true</bool>
   </property>
  </designerdata>
