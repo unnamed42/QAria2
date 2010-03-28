@@ -281,9 +281,10 @@
     <property name="title">
      <string>&amp;File</string>
     </property>
-    <addaction name="actionExit"/>
     <addaction name="actionOpen_URL"/>
     <addaction name="actionResume"/>
+    <addaction name="separator"/>
+    <addaction name="actionExit"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuOptions"/>
@@ -507,7 +508,20 @@
   </action>
   <action name="actionAbout">
    <property name="text">
-    <string>&amp;About</string>
+    <string>&amp;About karia2</string>
+   </property>
+   <property name="iconText">
+    <string>About karia2</string>
+   </property>
+  </action>
+  <action name="actionDsfdsf">
+   <property name="text">
+    <string>dsfdsf</string>
+   </property>
+  </action>
+  <action name="actionDsfdsfdsfdsfdsf">
+   <property name="text">
+    <string>dsfdsfdsfdsfdsf</string>
    </property>
   </action>
  </widget>

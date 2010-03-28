@@ -1,4 +1,6 @@
+#include <QtCore>
 #include <QtGui> 
+
 #include "karia2.h"
 #include <fcntl.h>
 #include <iostream>
@@ -139,6 +141,8 @@ void karia2::openurl() //aprire un url con l'indirizzo al file da scaricare
         this->aria2.start("aria2c", argList, QIODevice::ReadOnly);
         //TODO:aggiungere stringa relativa alle info nel display text browser.
         listWidget->insertItem( 1, tr("Downloading: " ) + text + tr("seg ") + str2 );
+
+        this->aria2.setProperty("params", argList);
 	}
 }
 //////////////////////////////////////////////////////////////////////////////////////////////
@@ -188,9 +192,13 @@ void karia2::segn()
 void karia2::remove()
 {
     textBrowser->clear();
-    system("rm -rf $HOME/.karia2/url; rm -rf $HOME/.karia2/status");
-
-
+    textBrowser->append(tr("Stoping Downloading ..."));
+    // system("rm -rf $HOME/.karia2/url; rm -rf $HOME/.karia2/status");
+    if (this->aria2.state() == QProcess::Starting || this->aria2.state() == QProcess::Running) {
+        this->aria2.kill();
+    }
+    QFile::remove(QDir::homePath() + "./karia2/url");
+    QFile::remove(QDir::homePath() + "./karia2/status");
 }
 
 void karia2::stop()
@@ -198,7 +206,13 @@ void karia2::stop()
     //system("killall aria2c&");
     // QMessageBox::about(this, "About karia2","ciao");
     if (this->aria2.state() == QProcess::Starting || this->aria2.state() == QProcess::Running) {
+        QStringList argList = this->aria2.property("params").toStringList();
         this->aria2.kill();
+        QFile procParams;
+        procParams.setFileName(QDir::homePath() + "/.karia2/resume_params");
+        procParams.open(QIODevice::ReadWrite);
+        QDataStream out(&procParams);
+        out<<argList;
     } else {
         // aria2c not started
     }
@@ -206,7 +220,24 @@ void karia2::stop()
 
 void karia2::resume()
 {
-    system("/opt/karia2/resume&");
+    QString resumeInfoFile = QDir::homePath() + "/.karia2/resume_params";
+    if (QFile(resumeInfoFile).exists()) {
+        QFile procParams(resumeInfoFile);
+        procParams.open(QIODevice::ReadOnly);
+        QDataStream in(&procParams);
+        QStringList argList;
+        in>>argList;
+        argList << "-c";
+
+        this->aria2.start("aria2c", argList, QIODevice::ReadOnly);
+        this->textBrowser->append(tr("Resume downloading: " ) + argList.join(" "));
+
+        //
+        QFile::remove(resumeInfoFile);
+    } else {
+        qDebug()<<"No resume task exists";
+    }
+    // system("/opt/karia2/resume&");
 }
 
 void karia2::setSettingsDirty()
@@ -222,18 +253,15 @@ void karia2::setSettingsDirty()
     strWStat = (widgetstat.readAll()); //legge il contenuto del file widgetstat.se 0 sinistra, se 1 destra.
     int Wstat;
     Wstat = strWStat.toInt();
-    if(Wstat == 0)
-        {
-            widgetstat.reset();
-            QTextStream out(&widgetstat);
-            out << "1";
-        }
-    else
-        {
-            widgetstat.reset();
-            QTextStream out(&widgetstat);
-            out << "0";
-        }
+    if (Wstat == 0) {
+        widgetstat.reset();
+        QTextStream out(&widgetstat);
+        out << "1";
+    } else {
+        widgetstat.reset();
+        QTextStream out(&widgetstat);
+        out << "0";
+    }
 }
 
 void karia2::about()
@@ -242,8 +270,9 @@ void karia2::about()
                        "karia2 is a Qt4 gui for aria2 download manager\n\n"
                        "karia2 is published under the terms of \n"
                        "the GPL v.3  \n"
-                       "Author: Fabrizio Di Marco\n\n"
-                       "For technical support, mailto:fdmarco3@gmail.com\n"
+                       "Author: Fabrizio Di Marco 2007-2010\n"
+                       "       drswinghead 2010\n\n"
+                       "For technical support, mailto: fdmarco3@gmail.com\n"
                        "or visit: http://sourceforge.net/projects/karia2\n");
 }
 
@@ -265,9 +294,7 @@ void karia2::logReadStderr()
 
 void karia2::closeEvent(QCloseEvent *event)
 {
-    if (this->aria2.state() == QProcess::Starting || this->aria2.state() == QProcess::Running) {
-        this->aria2.kill();
-    }
+    this->stop();
     QMainWindow::closeEvent(event);
 }
 
