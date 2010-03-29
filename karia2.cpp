@@ -234,19 +234,23 @@ void karia2::stop()
     }
 }
 
-void karia2::stopFriendly()
+bool karia2::stopFriendly()
 {
     int rv = 0;
 
 #ifdef Q_OS_WIN
+    qDebug()<<"Not impled";
+#else
     rv = kill(this->aria2.pid(), SIGINT);
     if (rv != 0) {
         qDebug()<<"Can not stop the process: "<<this->aria2.pid()
                 <<strerror(errno);
+    } else {
+        return true;
     }
-#else
-    qDebug()<<"Not impled";
 #endif
+
+    return false;
 }
 
 void karia2::resume()

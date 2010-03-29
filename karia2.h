@@ -27,7 +27,7 @@ private slots:
 	void display();
 	void remove();
 	void stop();
-    void stopFriendly();
+    bool stopFriendly();
 	void resume();
 	void setSettingsDirty();
 	void settings();
