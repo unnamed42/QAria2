@@ -1,3 +1,8 @@
+// karia2.h --- 
+// 
+// Created: 2010-03-29 13:13:24 +0800
+// Version: $Id$
+// 
 #ifndef KARIA2_H
 #define KARIA2_H
 
@@ -28,6 +33,7 @@ private slots:
 
     void logReadStdout();
     void logReadStderr();
+    void procFinished(int exitCode, QProcess::ExitStatus exitStatus);
 
 protected:
     virtual void closeEvent(QCloseEvent *event);

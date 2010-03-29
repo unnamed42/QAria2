@@ -1,3 +1,9 @@
+// karia2.cpp --- 
+// 
+// Created: 2010-03-29 13:13:05 +0800
+// Version: $Id$
+// 
+
 #include <QtCore>
 #include <QtGui> 
 
@@ -30,32 +36,35 @@ karia2::karia2()
 	connect( pushButton_5, SIGNAL( clicked() ), this, SLOT( openurl() ) );
 	connect( pushButton_6, SIGNAL( clicked() ), this, SLOT( resume() ) );
 
-    QTimer *timer = new QTimer(this);                                      //Qui viene inizializzato il timer che 
+    QTimer *timer = new QTimer(this);       //Qui viene inizializzato il timer che 
 	connect( timer, SIGNAL(timeout()), this, SLOT( update() ) );  //esegue lo slot update()
-	timer->start(2000);      //il tempo di aggiornamento è 2 secondi visto che deve cambiare solo quando si cambiano le opzioni
+	timer->start(2000);  //il tempo di aggiornamento è 2 secondi visto che deve cambiare solo quando si cambiano le opzioni
 
-    QTimer *timer2 = new QTimer(this);                         //Qui viene inizializzato il timer che 
-	connect( timer2, SIGNAL(timeout()), this, SLOT( display() ) );  //esegue lo slot display() dello stato scaricamento file
+    QTimer *timer2 = new QTimer(this);       //Qui viene inizializzato il timer che 
+	connect( timer2, SIGNAL(timeout()), this, SLOT(display()));  //esegue lo slot display() dello stato scaricamento file
 	// timer2->start(1000);// il tempo di aggiornamento è settato ad 1 secondo.
-
 
     QSystemTrayIcon *trayIcon;				//Tray Icon
     trayIcon = new QSystemTrayIcon();
     QIcon icon = QIcon(":/images/default.png");
     trayIcon->setIcon(icon);
     trayIcon->show();
-    trayIcon->setToolTip("karia2");
+    trayIcon->setToolTip(tr("karia2 download manager"));
 
 	connect(spinBox,SIGNAL( valueChanged(int)), this, SLOT ( segn() ) );//quando cambio il valore dello spinbox,viene emesso un segnale che avvia segn()
 	connect(spinBox,SIGNAL( valueChanged(int)), this, SLOT ( update() ) );
 	connect(dockWidget, SIGNAL(dockLocationChanged(Qt::DockWidgetArea)),this, SLOT(setSettingsDirty()));
-    splash->finish(this);
 
     // read out put of child process
     QObject::connect(&this->aria2, SIGNAL(readyReadStandardOutput()),
                      this, SLOT(logReadStdout()));
     QObject::connect(&this->aria2, SIGNAL(readyReadStandardError()),
                      this, SLOT(logReadStderr()));
+    QObject::connect(&this->aria2, SIGNAL(finished(int, QProcess::ExitStatus)),
+                     this, SLOT(procFinished(int, QProcess::ExitStatus)));
+
+    splash->finish(this);
+    delete splash;
 }
 
 karia2::~karia2()
@@ -82,7 +91,6 @@ void karia2::update()   //aggiorna lo stato delle opzioni
     str2.prepend("Segments: ");
     str3 = str1 + "   " + str2;
     label->setText(str3);
-	
 }
 
 
@@ -104,14 +112,11 @@ void karia2::display() //aggiorna lo stato dello scaricamento del file
 	str6 = str4 + "   " + str5;
 	str4.prepend(tr("Downloading..."));
 	textBrowser->setPlainText(str6);
-
-
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
 void karia2::openurl() //aprire un url con l'indirizzo al file da scaricare
 {
-	
     QDir Home = QDir::home();
 	QFile filedestination;
 	QFile filedestination2;
@@ -227,11 +232,12 @@ void karia2::resume()
         QDataStream in(&procParams);
         QStringList argList;
         in>>argList;
-        argList << "-c";
+        if (argList.count() > 0) {
+            argList << "-c";
 
-        this->aria2.start("aria2c", argList, QIODevice::ReadOnly);
-        this->textBrowser->append(tr("Resume downloading: " ) + argList.join(" "));
-
+            this->aria2.start("aria2c", argList, QIODevice::ReadOnly);
+            this->textBrowser->append(tr("Resume downloading: " ) + argList.join(" "));
+        }
         //
         QFile::remove(resumeInfoFile);
     } else {
@@ -290,6 +296,22 @@ void karia2::logReadStdout()
 }
 void karia2::logReadStderr()
 {
+}
+void karia2::procFinished(int exitCode, QProcess::ExitStatus exitStatus)
+{
+    QString resumeInfoFile = QDir::homePath() + "/.karia2/resume_params";
+    
+    switch (exitCode) {
+    case 0:
+        QFile::remove(resumeInfoFile);
+        break;
+    default:
+        if (exitStatus == QProcess::NormalExit) {
+            QFile::remove(resumeInfoFile);
+        } else {
+        }
+        break;
+    };
 }
 
 void karia2::closeEvent(QCloseEvent *event)
