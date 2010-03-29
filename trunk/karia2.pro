@@ -1,3 +1,8 @@
+# karia2.pro --- 
+# 
+# Created: 2010-03-29 13:13:36 +0800
+# Version: $Id$
+# 
 HEADERS     = karia2.h settings.h
 SOURCES     = karia2.cpp main.cpp
 FORMS       = karia2.ui
