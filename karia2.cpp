@@ -4,14 +4,19 @@
 // Version: $Id$
 // 
 
-#include <QtCore>
-#include <QtGui> 
-
-#include "karia2.h"
+#ifdef Q_OS_WIN
+#else
+#include <signal.h>
+#endif
+#include <errno.h>
 #include <fcntl.h>
 #include <iostream>
-#include <qtextcodec.h>
-#include <QSystemTrayIcon>
+
+#include <QtCore>
+#include <QtGui> 
+#include <QTextCodec>
+
+#include "karia2.h"
 #include"settings.h"
 
 // if we include <QtGui> there is no need to include every class used: <QString>, <QFileDialog>,...
@@ -44,7 +49,6 @@ karia2::karia2()
 	connect( timer2, SIGNAL(timeout()), this, SLOT(display()));  //esegue lo slot display() dello stato scaricamento file
 	// timer2->start(1000);// il tempo di aggiornamento è settato ad 1 secondo.
 
-    QSystemTrayIcon *trayIcon;				//Tray Icon
     trayIcon = new QSystemTrayIcon();
     QIcon icon = QIcon(":/images/default.png");
     trayIcon->setIcon(icon);
@@ -55,7 +59,7 @@ karia2::karia2()
 	connect(spinBox,SIGNAL( valueChanged(int)), this, SLOT ( update() ) );
 	connect(dockWidget, SIGNAL(dockLocationChanged(Qt::DockWidgetArea)),this, SLOT(setSettingsDirty()));
 
-    // read out put of child process
+    // read output of child process
     QObject::connect(&this->aria2, SIGNAL(readyReadStandardOutput()),
                      this, SLOT(logReadStdout()));
     QObject::connect(&this->aria2, SIGNAL(readyReadStandardError()),
@@ -69,6 +73,7 @@ karia2::karia2()
 
 karia2::~karia2()
 {
+    delete this->trayIcon;
 }
 
 void karia2::update()   //aggiorna lo stato delle opzioni
@@ -212,7 +217,13 @@ void karia2::stop()
     // QMessageBox::about(this, "About karia2","ciao");
     if (this->aria2.state() == QProcess::Starting || this->aria2.state() == QProcess::Running) {
         QStringList argList = this->aria2.property("params").toStringList();
+
+        #ifdef Q_OS_WIN
         this->aria2.kill();
+        #else
+        this->stopFriendly();
+        #endif
+
         QFile procParams;
         procParams.setFileName(QDir::homePath() + "/.karia2/resume_params");
         procParams.open(QIODevice::ReadWrite);
@@ -221,6 +232,21 @@ void karia2::stop()
     } else {
         // aria2c not started
     }
+}
+
+void karia2::stopFriendly()
+{
+    int rv = 0;
+
+#ifdef Q_OS_WIN
+    rv = kill(this->aria2.pid(), SIGINT);
+    if (rv != 0) {
+        qDebug()<<"Can not stop the process: "<<this->aria2.pid()
+                <<strerror(errno);
+    }
+#else
+    qDebug()<<"Not impled";
+#endif
 }
 
 void karia2::resume()
@@ -296,6 +322,7 @@ void karia2::logReadStdout()
 }
 void karia2::logReadStderr()
 {
+    
 }
 void karia2::procFinished(int exitCode, QProcess::ExitStatus exitStatus)
 {

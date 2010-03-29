@@ -27,6 +27,7 @@ private slots:
 	void display();
 	void remove();
 	void stop();
+    void stopFriendly();
 	void resume();
 	void setSettingsDirty();
 	void settings();
@@ -39,6 +40,7 @@ protected:
     virtual void closeEvent(QCloseEvent *event);
 
 private:
+    QSystemTrayIcon *trayIcon;
     QProcess aria2;
     /*private slots:
       void setIcon(int index);
