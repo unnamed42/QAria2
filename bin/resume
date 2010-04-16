@@ -1,8 +1,0 @@
-#!/bin/bash
-
-
-dest=`cat $HOME/.karia2/dest`
-seg=`cat $HOME/.karia2/seg`
-address=`cat $HOME/.karia2/address`
-cd "$dest"
-aria2c -c -s $seg "$address"
